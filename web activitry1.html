@@ -1,0 +1,954 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Prasanna | Personal Portfolio</title>
+
+    <style>
+        /* BASIC STYLING */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --primary: #a855f7;
+            --secondary: #ec4899;
+            --dark: #201735;
+            --light: #fff8ff;
+            --text: #514563;
+        }
+
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: var(--light);
+            color: var(--text);
+            line-height: 1.7;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* NAVIGATION BAR */
+        header {
+            width: 100%;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 248, 255, 0.95);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 3px 20px rgba(90, 50, 120, 0.08);
+        }
+
+        nav {
+            max-width: 1150px;
+            margin: auto;
+            padding: 18px 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .logo span {
+            color: var(--secondary);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 22px;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            min-height: 90vh;
+            padding: 80px 8%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 65px;
+            flex-wrap: wrap;
+            background:
+                radial-gradient(circle at 10% 20%,
+                #fce7f3 0, transparent 35%),
+                radial-gradient(circle at 90% 80%,
+                #ede9fe 0, transparent 35%),
+                var(--light);
+        }
+
+        .hero-content {
+            max-width: 590px;
+            animation: slideLeft 1s ease;
+        }
+
+        .hello {
+            display: inline-block;
+            padding: 7px 17px;
+            border-radius: 30px;
+            background: #f3e8ff;
+            color: #9333ea;
+            font-size: 14px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            color: var(--dark);
+            font-size: clamp(38px, 6vw, 64px);
+            line-height: 1.2;
+            margin-bottom: 18px;
+        }
+
+        .hero h1 span {
+            background: linear-gradient(
+                90deg, var(--primary), var(--secondary)
+            );
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero p {
+            font-size: 17px;
+            margin-bottom: 28px;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(
+                90deg, var(--primary), var(--secondary)
+            );
+            color: white;
+            box-shadow: 0 7px 20px #d8b4fe;
+        }
+
+        .btn-outline {
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn:hover {
+            transform: translateY(-4px);
+        }
+
+        /* PROFILE CARD */
+        .profile-card {
+            width: 290px;
+            padding: 30px;
+            text-align: center;
+            border-radius: 30px;
+            background: white;
+            box-shadow: 0 15px 45px rgba(120, 70, 160, 0.15);
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .profile-circle {
+            width: 150px;
+            height: 150px;
+            margin: auto auto 20px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 75px;
+            background: linear-gradient(
+                135deg, #fbcfe8, #ddd6fe
+            );
+            border: 5px solid white;
+            box-shadow: 0 0 0 4px #e9d5ff;
+        }
+
+        .profile-card h2 {
+            color: var(--dark);
+        }
+
+        .profile-card p {
+            margin: 5px 0;
+            font-size: 14px;
+        }
+
+        .social {
+            margin-top: 18px;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .social a {
+            padding: 8px 12px;
+            background: #f3e8ff;
+            border-radius: 12px;
+            color: #9333ea;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        /* COMMON SECTION */
+        section {
+            padding: 85px 8%;
+            scroll-margin-top: 75px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 45px;
+        }
+
+        .section-title h2 {
+            font-size: 35px;
+            color: var(--dark);
+        }
+
+        .section-title h2 span {
+            color: var(--primary);
+        }
+
+        .section-title p {
+            margin-top: 8px;
+        }
+
+        /* ABOUT */
+        .about {
+            max-width: 900px;
+            margin: auto;
+            text-align: center;
+            font-size: 17px;
+        }
+
+        .about-box {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 8px 30px #e9d5ff66;
+            border: 1px solid #f3e8ff;
+        }
+
+        /* EDUCATION */
+        .education {
+            background: #f5efff;
+        }
+
+        .timeline {
+            max-width: 750px;
+            margin: auto;
+        }
+
+        .timeline-card {
+            padding: 25px;
+            margin-bottom: 22px;
+            background: white;
+            border-radius: 18px;
+            border-left: 5px solid var(--primary);
+            transition: 0.3s;
+        }
+
+        .timeline-card:hover {
+            transform: translateX(8px);
+            box-shadow: 0 10px 25px #d8b4fe66;
+        }
+
+        .timeline-card h3 {
+            color: var(--dark);
+        }
+
+        .year {
+            color: var(--secondary);
+            font-weight: bold;
+        }
+
+        /* SKILLS */
+        .skills-container {
+            max-width: 900px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(
+                auto-fit, minmax(220px, 1fr)
+            );
+            gap: 22px;
+        }
+
+        .skill-card {
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            text-align: center;
+            border: 1px solid #f3e8ff;
+            transition: 0.3s;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px #d8b4fe66;
+        }
+
+        .skill-icon {
+            font-size: 40px;
+        }
+
+        .skill-card h3 {
+            margin: 10px 0;
+            color: var(--dark);
+        }
+
+        /* HOBBIES */
+        .hobbies {
+            background: #fdf2f8;
+        }
+
+        .hobby-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .hobby {
+            min-width: 170px;
+            padding: 25px;
+            text-align: center;
+            border-radius: 20px;
+            background: white;
+            transition: 0.3s;
+        }
+
+        .hobby:hover {
+            transform: scale(1.06);
+        }
+
+        .hobby div {
+            font-size: 35px;
+        }
+
+        /* PROJECTS */
+        .project-container {
+            max-width: 1000px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: repeat(
+                auto-fit, minmax(250px, 1fr)
+            );
+            gap: 25px;
+        }
+
+        .project-card {
+            background: white;
+            border-radius: 20px;
+            padding: 28px;
+            box-shadow: 0 8px 25px #e9d5ff55;
+            transition: 0.3s;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .project-card .project-icon {
+            font-size: 38px;
+        }
+
+        .project-card h3 {
+            color: var(--dark);
+            margin: 12px 0;
+        }
+
+        .tag {
+            display: inline-block;
+            margin-top: 15px;
+            margin-right: 5px;
+            padding: 5px 12px;
+            border-radius: 20px;
+            background: #f3e8ff;
+            color: #9333ea;
+            font-size: 12px;
+        }
+
+        /* ACHIEVEMENTS */
+        .achievements {
+            background: #f5efff;
+        }
+
+        .achievement-box {
+            max-width: 800px;
+            margin: auto;
+            padding: 30px;
+            background: white;
+            border-radius: 20px;
+            text-align: center;
+            transition: 0.3s;
+        }
+
+        .achievement-box:hover {
+            box-shadow: 0 12px 30px #d8b4fe66;
+        }
+
+        .achievement-box .trophy {
+            font-size: 55px;
+        }
+
+        /* RESUME */
+        .resume {
+            text-align: center;
+        }
+
+        .resume-box {
+            max-width: 750px;
+            margin: auto;
+            padding: 35px;
+            border-radius: 25px;
+            background: linear-gradient(
+                135deg, #f3e8ff, #fce7f3
+            );
+        }
+
+        .resume-box h3 {
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+
+        /* CONTACT */
+        .contact {
+            background: #fdf2f8;
+        }
+
+        .contact-container {
+            max-width: 750px;
+            margin: auto;
+            text-align: center;
+        }
+
+        .contact-card {
+            background: white;
+            padding: 30px;
+            border-radius: 22px;
+            box-shadow: 0 8px 25px #e9d5ff55;
+        }
+
+        .contact-item {
+            margin: 18px 0;
+            overflow-wrap: anywhere;
+        }
+
+        .contact-item strong {
+            color: var(--primary);
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 25px;
+            background: var(--dark);
+            color: white;
+            text-align: center;
+        }
+
+        footer span {
+            color: #f9a8d4;
+        }
+
+        /* ANIMATIONS */
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-12px);
+            }
+        }
+
+        @keyframes slideLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* MOBILE RESPONSIVE DESIGN */
+        @media (max-width: 760px) {
+            nav {
+                flex-direction: column;
+                padding: 15px;
+            }
+
+            .nav-links {
+                justify-content: center;
+                gap: 12px 17px;
+            }
+
+            .hero {
+                padding: 60px 6%;
+                gap: 35px;
+                text-align: center;
+            }
+
+            .hero-content {
+                width: 100%;
+            }
+
+            .buttons {
+                justify-content: center;
+            }
+
+            .profile-card {
+                width: min(100%, 320px);
+            }
+
+            section {
+                padding: 65px 6%;
+            }
+
+            .section-title h2 {
+                font-size: 29px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVIGATION -->
+    <header>
+        <nav>
+            <a href="#home" class="logo">Prasanna<span>.</span></a>
+
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#hobbies">Hobbies</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#achievements">Achievements</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- HOME SECTION -->
+    <section class="hero" id="home">
+
+        <div class="hero-content">
+            <span class="hello">✨ Welcome to My Portfolio</span>
+
+            <h1>
+                Hi, I'm <span>Prasanna</span>
+            </h1>
+
+            <h2>Future Software Engineer 💻</h2>
+
+            <p>
+                I am a passionate Computer Science student who loves
+                learning new technologies, exploring creativity, and
+                building beautiful websites. I believe every small
+                step takes me closer to my dreams!
+            </p>
+
+            <div class="buttons">
+                <a href="#about" class="btn btn-primary">
+                    Discover More →
+                </a>
+
+                <a href="#contact" class="btn btn-outline">
+                    Contact Me 💌
+                </a>
+            </div>
+        </div>
+
+        <div class="profile-card">
+            <div class="profile-circle">👩🏻‍💻</div>
+
+            <h2>N. Lakshmi Prasanna</h2>
+
+            <p>🎓 B.Tech Student</p>
+            <p>💜 Computer Science & AI</p>
+            <p>🌷 Dream Big, Learn Every Day</p>
+
+            <div class="social">
+                <a href="#projects">My Projects</a>
+                <a href="#contact">Say Hello</a>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about">
+        <div class="section-title">
+            <h2>About <span>Me</span> 🌸</h2>
+            <p>A little introduction about myself</p>
+        </div>
+
+        <div class="about">
+            <div class="about-box">
+                <p>
+                    Hello! My name is N. Lakshmi Prasanna.
+                    I am a first-year B.Tech student in the
+                    Computer Science and Engineering program
+                    with a specialization in AI and related
+                    technologies.
+                </p>
+
+                <br>
+
+                <p>
+                    I enjoy learning programming, developing
+                    websites, reading books, and discovering
+                    new things. My goal is to become a skilled
+                    software engineer and create technology
+                    that makes people's lives better.
+                </p>
+
+                <br>
+
+                <p>
+                    I believe in confidence, continuous learning,
+                    hard work, and never giving up on my dreams. 💖
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- EDUCATION SECTION -->
+    <section class="education" id="education">
+        <div class="section-title">
+            <h2>My <span>Education</span> 🎓</h2>
+            <p>My educational journey</p>
+        </div>
+
+        <div class="timeline">
+
+            <div class="timeline-card">
+                <span class="year">Present</span>
+                <h3>B.Tech — Computer Science</h3>
+                <p>
+                    <strong>College:</strong> NRI Deemed University
+                </p>
+                <p>
+                    <strong>Specialization:</strong>
+                    CSM — Artificial Intelligence and related technologies
+                </p>
+                <p>
+                    Learning programming, computational mathematics,
+                    web development, and computer science fundamentals.
+                </p>
+            </div>
+
+            <div class="timeline-card">
+                <span class="year">Completed</span>
+                <h3>Intermediate Education</h3>
+                <p>
+                    <strong>College:</strong> Indknp College,
+                    Vissannapeta
+                </p>
+                <p>
+                    Studied intermediate-level subjects and prepared
+                    for engineering entrance examinations.
+                </p>
+            </div>
+
+            <div class="timeline-card">
+                <span class="year">Completed</span>
+                <h3>Secondary School Education</h3>
+                <p>
+                    <strong>School:</strong> Inelite School,
+                    Vissannapeta
+                </p>
+                <p>
+                    Built my academic foundation and participated
+                    in games and other activities.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- SKILLS SECTION -->
+    <section id="skills">
+        <div class="section-title">
+            <h2>Technical <span>Skills</span> 💻</h2>
+            <p>Technologies I am learning and exploring</p>
+        </div>
+
+        <div class="skills-container">
+
+            <div class="skill-card">
+                <div class="skill-icon">🌐</div>
+                <h3>HTML</h3>
+                <p>Creating the structure of web pages.</p>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-icon">🎨</div>
+                <h3>CSS</h3>
+                <p>Designing colorful and responsive websites.</p>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-icon">🐍</div>
+                <h3>Python</h3>
+                <p>Learning programming and problem-solving.</p>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-icon">✨</div>
+                <h3>JavaScript</h3>
+                <p>Exploring interactive web development.</p>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-icon">🤖</div>
+                <h3>Artificial Intelligence</h3>
+                <p>Discovering AI concepts and useful tools.</p>
+            </div>
+
+            <div class="skill-card">
+                <div class="skill-icon">🧠</div>
+                <h3>Problem Solving</h3>
+                <p>Developing logical thinking step by step.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- HOBBIES SECTION -->
+    <section class="hobbies" id="hobbies">
+        <div class="section-title">
+            <h2>My <span>Hobbies</span> 🌷</h2>
+            <p>Things that make me happy</p>
+        </div>
+
+        <div class="hobby-container">
+
+            <div class="hobby">
+                <div>📚</div>
+                <h3>Reading Books</h3>
+            </div>
+
+            <div class="hobby">
+                <div>💡</div>
+                <h3>Learning New Things</h3>
+            </div>
+
+            <div class="hobby">
+                <div>💻</div>
+                <h3>Coding</h3>
+            </div>
+
+            <div class="hobby">
+                <div>🏸</div>
+                <h3>Playing Games</h3>
+            </div>
+
+            <div class="hobby">
+                <div>🎨</div>
+                <h3>Creative Activities</h3>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- PROJECTS SECTION -->
+    <section id="projects">
+        <div class="section-title">
+            <h2>My <span>Projects</span> 🚀</h2>
+            <p>My learning journey through practical projects</p>
+        </div>
+
+        <div class="project-container">
+
+            <div class="project-card">
+                <div class="project-icon">🌍</div>
+                <h3>Travel & Tourism Website</h3>
+                <p>
+                    A website that introduces beautiful travel
+                    destinations and helps visitors explore
+                    tourism information.
+                </p>
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+            </div>
+
+            <div class="project-card">
+                <div class="project-icon">👩🏻‍💻</div>
+                <h3>Personal Portfolio</h3>
+                <p>
+                    A personal website that displays my profile,
+                    education, skills, hobbies, achievements,
+                    and contact information.
+                </p>
+                <span class="tag">HTML</span>
+                <span class="tag">CSS</span>
+            </div>
+
+            <div class="project-card">
+                <div class="project-icon">🤖</div>
+                <h3>AI Tools Presentation</h3>
+                <p>
+                    An educational presentation introducing
+                    artificial intelligence tools, their uses,
+                    benefits, and responsible use.
+                </p>
+                <span class="tag">Generative AI</span>
+                <span class="tag">Education</span>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ACHIEVEMENTS SECTION -->
+    <section class="achievements" id="achievements">
+        <div class="section-title">
+            <h2>My <span>Achievements</span> 🏆</h2>
+            <p>Small achievements that inspire me to grow</p>
+        </div>
+
+        <div class="achievement-box">
+            <div class="trophy">🏅</div>
+
+            <h3>Sports & Games Achievements</h3>
+
+            <p>
+                I have received medals for participating in
+                games and sports activities. These experiences
+                have encouraged me to develop confidence,
+                discipline, teamwork, and a positive attitude.
+            </p>
+
+            <br>
+
+            <p>
+                My biggest goal is to keep learning, improve
+                my skills, and achieve more in the future.
+            </p>
+        </div>
+    </section>
+
+    <!-- RESUME SECTION -->
+    <section class="resume" id="resume">
+        <div class="section-title">
+            <h2>My <span>Resume</span> 📄</h2>
+            <p>A quick look at my professional profile</p>
+        </div>
+
+        <div class="resume-box">
+            <h3>N. Lakshmi Prasanna</h3>
+
+            <p>
+                B.Tech Student | Aspiring Software Engineer
+            </p>
+
+            <p>
+                Interested in programming, web development,
+                artificial intelligence, and problem-solving.
+            </p>
+
+            <br>
+
+            <a href="resume.pdf" class="btn btn-primary" download>
+                Download My Resume ↓
+            </a>
+
+            <p style="font-size: 13px; margin-top: 15px;">
+                Note: Add your actual resume PDF as
+                <strong>resume.pdf</strong> in the same folder.
+            </p>
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section class="contact" id="contact">
+        <div class="section-title">
+            <h2>Contact <span>Me</span> 💌</h2>
+            <p>Let's connect and share ideas!</p>
+        </div>
+
+        <div class="contact-container">
+            <div class="contact-card">
+
+                <div class="contact-item">
+                    <strong>👩 Name:</strong>
+                    N. Lakshmi Prasanna
+                </div>
+
+                <div class="contact-item">
+                    <strong>📧 Email:</strong>
+                    <a href="mailto:your-email@example.com">
+                        your-email@example.com
+                    </a>
+                </div>
+
+                <div class="contact-item">
+                    <strong>💼 Career Goal:</strong>
+                    Software Engineer
+                </div>
+
+                <div class="contact-item">
+                    <strong>📍 Location:</strong>
+                    Andhra Pradesh, India
+                </div>
+
+                <br>
+
+                <a href="mailto:your-email@example.com"
+                   class="btn btn-primary">
+                    Send Me an Email ✉️
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>
+            Made with 💖 by <span>Prasanna</span>
+        </p>
+
+        <p>
+            © 2026 Prasanna's Personal Portfolio |
+            Dream Big. Work Hard. Shine Bright. ✨
+        </p>
+    </footer>
+
+</body>
+</html>
