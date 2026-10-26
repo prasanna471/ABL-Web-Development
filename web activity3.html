@@ -1,0 +1,1573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>WanderWild | Adventure Awaits</title>
+
+<style>
+/* GENERAL SETTINGS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+:root {
+    --green: #244c3a;
+    --lime: #c6f36b;
+    --orange: #ff8c42;
+    --cream: #f7f8f0;
+    --text: #5c685e;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: var(--cream);
+    color: #203329;
+    line-height: 1.7;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+}
+
+img {
+    max-width: 100%;
+}
+
+/* NAVIGATION */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(255,255,250,.96);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 3px 18px #193c2b10;
+}
+
+nav {
+    max-width: 1250px;
+    margin: auto;
+    padding: 17px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo {
+    font-size: 27px;
+    font-weight: 900;
+    color: var(--green);
+    white-space: nowrap;
+}
+
+.logo span {
+    color: var(--orange);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 25px;
+    flex-wrap: wrap;
+}
+
+.nav-links a {
+    font-size: 14px;
+    font-weight: 650;
+    transition: .3s;
+}
+
+.nav-links a:hover {
+    color: #e8752b;
+}
+
+.nav-button {
+    padding: 11px 20px;
+    border: none;
+    border-radius: 30px;
+    background: var(--green);
+    color: white;
+    font-weight: bold;
+    white-space: nowrap;
+    transition: .3s;
+}
+
+.nav-button:hover {
+    background: var(--orange);
+}
+
+/* HERO SECTION */
+.hero {
+    min-height: 660px;
+    display: flex;
+    align-items: center;
+    padding: 90px 8%;
+    position: relative;
+    color: white;
+    background:
+        linear-gradient(90deg,
+        rgba(10,35,25,.86),
+        rgba(10,35,25,.38),
+        rgba(10,35,25,.08)),
+        url("https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=2000&q=90")
+        center/cover no-repeat;
+}
+
+.hero-content {
+    max-width: 720px;
+    animation: rise .9s ease;
+}
+
+.hero-badge {
+    display: inline-block;
+    background: #ffffff20;
+    border: 1px solid #ffffff70;
+    backdrop-filter: blur(10px);
+    padding: 8px 17px;
+    border-radius: 30px;
+    font-size: 13px;
+    margin-bottom: 22px;
+}
+
+.hero h1 {
+    font-size: clamp(44px, 7vw, 82px);
+    line-height: 1.1;
+    margin-bottom: 24px;
+    letter-spacing: -2px;
+}
+
+.hero h1 span {
+    color: var(--lime);
+}
+
+.hero p {
+    max-width: 580px;
+    font-size: 17px;
+    color: #f0f4ee;
+    margin-bottom: 30px;
+}
+
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 13px 25px;
+    border-radius: 30px;
+    font-weight: bold;
+    border: none;
+    transition: .3s;
+}
+
+.btn-primary {
+    background: var(--lime);
+    color: #203329;
+}
+
+.btn-secondary {
+    border: 1px solid white;
+    color: white;
+    background: #ffffff15;
+}
+
+.btn:hover {
+    transform: translateY(-4px);
+}
+
+.hero-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 35px;
+    margin-top: 48px;
+}
+
+.stat strong {
+    display: block;
+    color: var(--lime);
+    font-size: 24px;
+}
+
+.stat span {
+    font-size: 13px;
+    color: #e4ebe4;
+}
+
+/* SHARED SECTION STYLE */
+section {
+    padding: 85px 7%;
+    scroll-margin-top: 80px;
+}
+
+.section-heading {
+    text-align: center;
+    max-width: 680px;
+    margin: 0 auto 45px;
+}
+
+.eyebrow {
+    text-transform: uppercase;
+    color: #e8752b;
+    font-size: 12px;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.section-heading h2 {
+    font-size: clamp(30px, 4vw, 43px);
+    line-height: 1.25;
+    margin: 10px 0;
+    color: var(--green);
+}
+
+.section-heading p {
+    color: var(--text);
+}
+
+/* ADVENTURE CATEGORIES */
+.category-grid {
+    max-width: 1150px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+}
+
+.category-card {
+    background: white;
+    padding: 30px 20px;
+    border-radius: 22px;
+    text-align: center;
+    border: 1px solid #e6e9dd;
+    transition: .3s;
+}
+
+.category-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 14px 30px #244c3a12;
+}
+
+.category-icon {
+    font-size: 43px;
+    margin-bottom: 12px;
+}
+
+.category-card h3 {
+    color: var(--green);
+    margin-bottom: 6px;
+}
+
+.category-card p {
+    font-size: 13px;
+    color: var(--text);
+}
+
+/* TREKKING ROUTES */
+.trips {
+    background: #edf1e7;
+}
+
+.trip-grid {
+    max-width: 1200px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 25px;
+}
+
+.trip-card {
+    background: white;
+    border-radius: 23px;
+    overflow: hidden;
+    box-shadow: 0 7px 25px #193c2b0c;
+    transition: .35s;
+}
+
+.trip-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 18px 35px #193c2b18;
+}
+
+.trip-image {
+    height: 245px;
+    position: relative;
+    overflow: hidden;
+}
+
+.trip-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: .5s;
+}
+
+.trip-card:hover .trip-image img {
+    transform: scale(1.08);
+}
+
+.image-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(transparent 45%, #071c13bb);
+}
+
+.trip-location {
+    position: absolute;
+    bottom: 15px;
+    left: 18px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.difficulty {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: var(--lime);
+    color: #203329;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 900;
+}
+
+.trip-content {
+    padding: 23px;
+}
+
+.trip-content h3 {
+    font-size: 21px;
+    color: var(--green);
+}
+
+.trip-content p {
+    color: var(--text);
+    font-size: 14px;
+    margin: 10px 0 18px;
+}
+
+.trip-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    font-size: 12px;
+    color: #69766b;
+    margin-bottom: 20px;
+}
+
+.trip-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    border-top: 1px solid #edf0e9;
+    padding-top: 17px;
+}
+
+.trip-price {
+    color: var(--green);
+    font-size: 21px;
+    font-weight: 900;
+}
+
+.trip-price small {
+    font-size: 11px;
+    color: var(--text);
+    font-weight: normal;
+}
+
+.small-button {
+    background: var(--green);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 10px 15px;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.small-button:hover {
+    background: var(--orange);
+}
+
+/* ADVENTURE PROMO */
+.promo {
+    margin: 75px auto 0;
+    max-width: 1150px;
+    min-height: 300px;
+    padding: 45px;
+    border-radius: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    color: white;
+    background:
+        linear-gradient(90deg, #183e2eeF, #183e2e70),
+        url("https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=1500&q=85")
+        center/cover;
+}
+
+.promo h2 {
+    font-size: clamp(28px, 4vw, 42px);
+    line-height: 1.2;
+    margin: 12px 0;
+}
+
+.promo p {
+    max-width: 570px;
+    color: #edf5e8;
+    margin-bottom: 20px;
+}
+
+.promo-label {
+    color: var(--lime);
+    font-weight: bold;
+    font-size: 13px;
+    letter-spacing: 2px;
+}
+
+/* SCHEDULE */
+.schedule {
+    background: white;
+}
+
+.schedule-list {
+    max-width: 850px;
+    margin: auto;
+}
+
+.schedule-item {
+    display: grid;
+    grid-template-columns: 90px 1fr;
+    gap: 25px;
+    padding: 25px 0;
+    border-bottom: 1px solid #e7eadf;
+}
+
+.day {
+    height: 72px;
+    border-radius: 17px;
+    background: #edf5e4;
+    color: var(--green);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+}
+
+.day span {
+    font-size: 12px;
+    color: #e8752b;
+}
+
+.schedule-item h3 {
+    color: var(--green);
+}
+
+.schedule-item p {
+    color: var(--text);
+    font-size: 14px;
+    margin-top: 5px;
+}
+
+/* EQUIPMENT CHECKLIST */
+.checklist-section {
+    background: #edf1e7;
+}
+
+.checklist-layout {
+    max-width: 1100px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+}
+
+.info-panel {
+    padding: 30px;
+    background: white;
+    border-radius: 24px;
+    border: 1px solid #e1e8da;
+}
+
+.info-panel h3 {
+    color: var(--green);
+    font-size: 23px;
+    margin-bottom: 8px;
+}
+
+.info-panel > p {
+    color: var(--text);
+    font-size: 14px;
+    margin-bottom: 20px;
+}
+
+.check-item {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 12px 0;
+    border-bottom: 1px solid #eff1ea;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.check-item input {
+    width: 18px;
+    height: 18px;
+    accent-color: var(--green);
+    cursor: pointer;
+}
+
+.check-item:has(input:checked) span {
+    text-decoration: line-through;
+    color: #8b9689;
+}
+
+.progress-text {
+    margin-top: 17px;
+    color: var(--green);
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.progress-track {
+    height: 8px;
+    background: #e7ebdf;
+    border-radius: 10px;
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    width: 0;
+    height: 100%;
+    background: var(--orange);
+    transition: .3s;
+}
+
+/* SAFETY */
+.safety-grid {
+    max-width: 1100px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+}
+
+.safety-card {
+    padding: 25px;
+    border-radius: 22px;
+    background: white;
+    border: 1px solid #e9ecdf;
+    transition: .3s;
+}
+
+.safety-card:hover {
+    transform: translateY(-5px);
+}
+
+.safety-card .icon {
+    font-size: 35px;
+}
+
+.safety-card h3 {
+    margin: 10px 0;
+    color: var(--green);
+}
+
+.safety-card p {
+    font-size: 14px;
+    color: var(--text);
+}
+
+/* PACKING GUIDE */
+.packing {
+    background: var(--green);
+    color: white;
+}
+
+.packing .section-heading h2 {
+    color: white;
+}
+
+.packing .section-heading p {
+    color: #dce9dd;
+}
+
+.packing-grid {
+    max-width: 1050px;
+    margin: auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+.packing-card {
+    padding: 23px;
+    border-radius: 20px;
+    background: #ffffff12;
+    border: 1px solid #ffffff22;
+    transition: .3s;
+}
+
+.packing-card:hover {
+    background: #ffffff20;
+    transform: translateY(-5px);
+}
+
+.packing-card div {
+    font-size: 34px;
+}
+
+.packing-card h3 {
+    color: var(--lime);
+    margin: 8px 0;
+}
+
+.packing-card p {
+    color: #e1eae1;
+    font-size: 13px;
+}
+
+/* BOOKING FORM */
+.booking {
+    background: white;
+}
+
+.booking-box {
+    max-width: 750px;
+    margin: auto;
+    padding: 35px;
+    background: #f5f7ef;
+    border-radius: 25px;
+}
+
+.booking-box h3 {
+    color: var(--green);
+    font-size: 25px;
+    margin-bottom: 7px;
+}
+
+.booking-box > p {
+    color: var(--text);
+    margin-bottom: 22px;
+}
+
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.form-group label {
+    font-size: 13px;
+    font-weight: bold;
+    color: var(--green);
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: 13px;
+    border: 1px solid #d9e1d2;
+    border-radius: 12px;
+    background: white;
+    font-family: inherit;
+    font-size: 14px;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: 2px solid var(--lime);
+    border-color: var(--green);
+}
+
+.full-width {
+    grid-column: 1 / -1;
+}
+
+.submit-button {
+    width: 100%;
+    border: none;
+    background: var(--green);
+    color: white;
+    padding: 15px;
+    border-radius: 13px;
+    font-size: 15px;
+    font-weight: bold;
+    transition: .3s;
+}
+
+.submit-button:hover {
+    background: #e8752b;
+}
+
+/* FOOTER */
+footer {
+    background: #142d22;
+    color: white;
+    padding: 40px 7% 25px;
+    text-align: center;
+}
+
+footer .logo {
+    color: white;
+}
+
+footer p {
+    color: #c8d6c9;
+    font-size: 13px;
+    margin-top: 10px;
+}
+
+footer .footer-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 23px;
+    margin: 20px 0;
+    font-size: 13px;
+}
+
+footer a:hover {
+    color: var(--lime);
+}
+
+/* ANIMATIONS */
+@keyframes rise {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 900px) {
+    nav {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .nav-links {
+        justify-content: center;
+        gap: 12px 18px;
+    }
+
+    .hero {
+        min-height: 580px;
+        padding: 70px 6%;
+    }
+
+    .trip-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .category-grid,
+    .packing-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .safety-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .promo {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
+
+@media (max-width: 560px) {
+    section {
+        padding: 60px 5%;
+    }
+
+    .hero {
+        min-height: 620px;
+    }
+
+    .hero h1 {
+        letter-spacing: -1px;
+    }
+
+    .hero-stats {
+        gap: 20px;
+    }
+
+    .trip-grid,
+    .category-grid,
+    .checklist-layout,
+    .safety-grid,
+    .packing-grid,
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .trip-image {
+        height: 230px;
+    }
+
+    .promo {
+        padding: 28px;
+    }
+
+    .schedule-item {
+        grid-template-columns: 65px 1fr;
+        gap: 15px;
+    }
+
+    .booking-box {
+        padding: 22px;
+    }
+
+    .full-width {
+        grid-column: auto;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVIGATION -->
+<header>
+<nav>
+    <a href="#home" class="logo">Wander<span>Wild.</span> 🌿</a>
+
+    <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#adventures">Adventures</a></li>
+        <li><a href="#schedule">Schedule</a></li>
+        <li><a href="#checklist">Checklist</a></li>
+        <li><a href="#safety">Safety</a></li>
+    </ul>
+
+    <a href="#booking" class="nav-button">Plan Your Trip ↗</a>
+</nav>
+</header>
+
+<!-- HERO SECTION -->
+<section class="hero" id="home">
+    <div class="hero-content">
+
+        <span class="hero-badge">
+            🏔️ FIND YOUR WILD SIDE
+        </span>
+
+        <h1>
+            The mountains<br>
+            are <span>calling.</span>
+        </h1>
+
+        <p>
+            Escape the ordinary. Discover breathtaking trails,
+            explore hidden forests, camp under the stars, and
+            create unforgettable memories in the great outdoors.
+        </p>
+
+        <div class="hero-buttons">
+            <a href="#adventures" class="btn btn-primary">
+                Explore Adventures ↗
+            </a>
+
+            <a href="#schedule" class="btn btn-secondary">
+                View Trip Schedule
+            </a>
+        </div>
+
+        <div class="hero-stats">
+            <div class="stat">
+                <strong>12+</strong>
+                <span>Adventure Routes</span>
+            </div>
+
+            <div class="stat">
+                <strong>4.9/5</strong>
+                <span>Sample Rating</span>
+            </div>
+
+            <div class="stat">
+                <strong>100%</strong>
+                <span>Adventure Spirit</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CATEGORIES -->
+<section id="activities">
+    <div class="section-heading">
+        <span class="eyebrow">Choose your adventure</span>
+        <h2>Find Your <span style="color:#e8752b">Kind of Wild</span></h2>
+        <p>
+            Whether you love mountain trails or peaceful
+            nights beneath the stars, your adventure begins here.
+        </p>
+    </div>
+
+    <div class="category-grid">
+
+        <div class="category-card">
+            <div class="category-icon">🥾</div>
+            <h3>Trekking</h3>
+            <p>Explore scenic mountain trails.</p>
+        </div>
+
+        <div class="category-card">
+            <div class="category-icon">🏕️</div>
+            <h3>Camping</h3>
+            <p>Sleep beneath a sky full of stars.</p>
+        </div>
+
+        <div class="category-card">
+            <div class="category-icon">🌲</div>
+            <h3>Forest Trails</h3>
+            <p>Discover the beauty of nature.</p>
+        </div>
+
+        <div class="category-card">
+            <div class="category-icon">📸</div>
+            <h3>Nature Escapes</h3>
+            <p>Capture beautiful outdoor moments.</p>
+        </div>
+
+    </div>
+</section>
+
+<!-- TREKKING ROUTES -->
+<section class="trips" id="adventures">
+    <div class="section-heading">
+        <span class="eyebrow">Explore the outdoors</span>
+        <h2>Popular <span style="color:#e8752b">Adventure Trips</span></h2>
+        <p>
+            Explore our sample trekking destinations and
+            choose an adventure that matches your interests.
+        </p>
+    </div>
+
+    <div class="trip-grid">
+
+        <!-- TRIP 1 -->
+        <article class="trip-card">
+            <div class="trip-image">
+                <img
+                    src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=900&q=85"
+                    alt="Snow-capped mountain peaks">
+
+                <div class="image-overlay"></div>
+
+                <span class="difficulty">MODERATE</span>
+
+                <div class="trip-location">🏔️ Himalayan Trails</div>
+            </div>
+
+            <div class="trip-content">
+                <h3>Mountain Explorer</h3>
+
+                <p>
+                    Enjoy spectacular mountain views, fresh air,
+                    and an unforgettable highland adventure.
+                </p>
+
+                <div class="trip-meta">
+                    <span>🗓️ 3 Days</span>
+                    <span>🥾 Moderate</span>
+                    <span>🌄 Mountain</span>
+                </div>
+
+                <div class="trip-footer">
+                    <div class="trip-price">
+                        ₹4,999 <small>/ person</small>
+                    </div>
+
+                    <button class="small-button"
+                        onclick="selectTrip('Mountain Explorer')">
+                        View Trip ↗
+                    </button>
+                </div>
+            </div>
+        </article>
+
+        <!-- TRIP 2 -->
+        <article class="trip-card">
+            <div class="trip-image">
+                <img
+                    src="https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=900&q=85"
+                    alt="Wild forest and wildlife">
+
+                <div class="image-overlay"></div>
+
+                <span class="difficulty">EASY</span>
+
+                <div class="trip-location">🌲 Forest Escape</div>
+            </div>
+
+            <div class="trip-content">
+                <h3>Green Forest Trek</h3>
+
+                <p>
+                    Walk through beautiful green landscapes
+                    and experience a peaceful nature escape.
+                </p>
+
+                <div class="trip-meta">
+                    <span>🗓️ 2 Days</span>
+                    <span>🥾 Easy</span>
+                    <span>🌳 Forest</span>
+                </div>
+
+                <div class="trip-footer">
+                    <div class="trip-price">
+                        ₹2,499 <small>/ person</small>
+                    </div>
+
+                    <button class="small-button"
+                        onclick="selectTrip('Green Forest Trek')">
+                        View Trip ↗
+                    </button>
+                </div>
+            </div>
+        </article>
+
+        <!-- TRIP 3 -->
+        <article class="trip-card">
+            <div class="trip-image">
+                <img
+                    src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=85"
+                    alt="Beautiful mountain and nature landscape">
+
+                <div class="image-overlay"></div>
+
+                <span class="difficulty">CHALLENGING</span>
+
+                <div class="trip-location">⛰️ Summit Adventure</div>
+            </div>
+
+            <div class="trip-content">
+                <h3>Summit Challenge</h3>
+
+                <p>
+                    Discover rugged landscapes and incredible
+                    views on a demanding mountain adventure.
+                </p>
+
+                <div class="trip-meta">
+                    <span>🗓️ 4 Days</span>
+                    <span>🥾 Challenging</span>
+                    <span>⛰️ Summit</span>
+                </div>
+
+                <div class="trip-footer">
+                    <div class="trip-price">
+                        ₹6,499 <small>/ person</small>
+                    </div>
+
+                    <button class="small-button"
+                        onclick="selectTrip('Summit Challenge')">
+                        View Trip ↗
+                    </button>
+                </div>
+            </div>
+        </article>
+
+    </div>
+
+    <!-- PROMOTION -->
+    <div class="promo">
+        <div>
+            <span class="promo-label">YOUR NEXT GREAT STORY</span>
+
+            <h2>Leave the roads.<br>Take the trails. 🌿</h2>
+
+            <p>
+                Discover the beauty of the outdoors, prepare
+                for your next journey, and make every step count.
+            </p>
+
+            <a href="#booking" class="btn btn-primary">
+                Start Your Adventure →
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- TRIP SCHEDULE -->
+<section class="schedule" id="schedule">
+    <div class="section-heading">
+        <span class="eyebrow">Plan every step</span>
+        <h2>Your Adventure <span style="color:#e8752b">Schedule</span></h2>
+        <p>
+            Example itinerary for a three-day mountain adventure.
+            Actual schedules depend on weather and local conditions.
+        </p>
+    </div>
+
+    <div class="schedule-list">
+
+        <div class="schedule-item">
+            <div class="day">
+                DAY <span>01</span>
+            </div>
+
+            <div>
+                <h3>Arrival & Trail Preparation</h3>
+
+                <p>
+                    Meet the trip coordinator, check equipment,
+                    review the route, and attend the safety briefing.
+                </p>
+            </div>
+        </div>
+
+        <div class="schedule-item">
+            <div class="day">
+                DAY <span>02</span>
+            </div>
+
+            <div>
+                <h3>Guided Trek & Nature Exploration</h3>
+
+                <p>
+                    Follow the approved trail with a qualified guide,
+                    take rest breaks, and enjoy the surrounding scenery.
+                </p>
+            </div>
+        </div>
+
+        <div class="schedule-item">
+            <div class="day">
+                DAY <span>03</span>
+            </div>
+
+            <div>
+                <h3>Return Journey</h3>
+
+                <p>
+                    Complete the planned return route, check equipment,
+                    and depart after the guide confirms it is safe.
+                </p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- EQUIPMENT CHECKLIST -->
+<section class="checklist-section" id="checklist">
+    <div class="section-heading">
+        <span class="eyebrow">Pack smart, travel safe</span>
+        <h2>Your Trekking <span style="color:#e8752b">Checklist</span></h2>
+        <p>
+            Tick each item as you prepare.
+            Your progress updates automatically!
+        </p>
+    </div>
+
+    <div class="checklist-layout">
+
+        <!-- ESSENTIALS -->
+        <div class="info-panel">
+            <h3>🎒 Essential Equipment</h3>
+
+            <p>Important items for a typical day hike.</p>
+
+            <label class="check-item">
+                <input type="checkbox" class="packing-check">
+                <span>Comfortable trekking shoes</span>
+            </label>
+
+            <label class="check-item">
+                <input type="checkbox" class="packing-check">
+                <span>Backpack with rain cover</span>
+            </label>
+
+            <label class="check-item">
+                <input type="checkbox" class="packing-check">
+                <span>Reusable water bottle</span>
+            </label>
+
+            <label class="check-item">
+                <input type="checkbox" class="packing-check">
+                <span>Weather-appropriate clothing</span>
+            </label>
+
+            <label class="check-item">
+                <input type="checkbox" class="packing-check">
+                <span>Navigation device or offline map</span>
+            </label>
+
+            <label class="check-item">
+                <input type="checkbox" class="packing-check">
+                <span>Headlamp or flashlight</span>
+            </label>
+
+            <div class="progress-text">
+                Packing progress: <span id="progress-count">0 / 6</span>
+            </div>
+
+            <div class="progress-track">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+        </div>
+
+        <!-- PERSONAL ITEMS -->
+        <div class="info-panel">
+            <h3>🧴 Personal Essentials</h3>
+
+            <p>Stay comfortable throughout your adventure.</p>
+
+            <label class="check-item">
+                <input type="checkbox" class="packing-check">
+                <span>First-aid kit and personal medication</span>
+            </label>
+
+            <label class="check-item">
+                <input type="checkbox" class="packing-check">
+                <span>Sun protection and sunglasses</span>
+            </label>
+
+            <label class="check-item">
+                <input type="checkbox" class="packing-check">
+                <span>Energy snacks and packed food</span>
+            </label>
+
+            <label class="check-item">
+                <input type="checkbox" class="packing-check">
+                <span>Identification and emergency contacts</span>
+            </label>
+
+            <label class="check-item">
+                <input type="checkbox" class="packing-check">
+                <span>Warm layers for changing weather</span>
+            </label>
+
+            <label class="check-item">
+                <input type="checkbox" class="packing-check">
+                <span>Phone and backup power bank</span>
+            </label>
+
+            <p style="margin-top:18px;font-size:12px;">
+                Requirements vary by destination, season, trip length,
+                and the guidance of your trek leader.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<!-- SAFETY GUIDELINES -->
+<section id="safety">
+    <div class="section-heading">
+        <span class="eyebrow">Adventure responsibly</span>
+        <h2>Safety <span style="color:#e8752b">First, Always</span> 🧭</h2>
+        <p>
+            Good preparation helps make outdoor adventures
+            safer and more enjoyable.
+        </p>
+    </div>
+
+    <div class="safety-grid">
+
+        <div class="safety-card">
+            <div class="icon">🌦️</div>
+            <h3>Check the Weather</h3>
+            <p>
+                Check the latest forecast and local advisories.
+                Postpone your trek if conditions become dangerous.
+            </p>
+        </div>
+
+        <div class="safety-card">
+            <div class="icon">🧑‍🤝‍🧑</div>
+            <h3>Stay With Your Group</h3>
+            <p>
+                Follow your guide, stay on permitted trails,
+                and tell someone about your planned route.
+            </p>
+        </div>
+
+        <div class="safety-card">
+            <div class="icon">💧</div>
+            <h3>Stay Hydrated</h3>
+            <p>
+                Carry sufficient water and food, take regular breaks,
+                and pay attention to signs of exhaustion.
+            </p>
+        </div>
+
+        <div class="safety-card">
+            <div class="icon">🩹</div>
+            <h3>Prepare for Emergencies</h3>
+            <p>
+                Carry a suitable first-aid kit and know how to
+                contact local emergency services.
+            </p>
+        </div>
+
+        <div class="safety-card">
+            <div class="icon">🌿</div>
+            <h3>Protect Nature</h3>
+            <p>
+                Take your rubbish back, respect wildlife,
+                and follow local conservation rules.
+            </p>
+        </div>
+
+        <div class="safety-card">
+            <div class="icon">⛰️</div>
+            <h3>Know Your Limits</h3>
+            <p>
+                Choose a route suited to your experience.
+                Turn back if the trail or weather becomes unsafe.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<!-- PACKING GUIDE -->
+<section class="packing" id="packing">
+    <div class="section-heading">
+        <span class="eyebrow">Pack for the journey</span>
+        <h2>The Ultimate <span style="color:#c6f36b">Packing Guide</span></h2>
+        <p>
+            Prepare for changing conditions with these
+            essential categories.
+        </p>
+    </div>
+
+    <div class="packing-grid">
+
+        <div class="packing-card">
+            <div>👕</div>
+            <h3>Clothing</h3>
+            <p>
+                Moisture-managing layers, warm clothing,
+                rain protection, and spare socks.
+            </p>
+        </div>
+
+        <div class="packing-card">
+            <div>🥾</div>
+            <h3>Footwear</h3>
+            <p>
+                Well-fitting shoes suitable for the terrain
+                and comfortable hiking socks.
+            </p>
+        </div>
+
+        <div class="packing-card">
+            <div>🍎</div>
+            <h3>Food & Water</h3>
+            <p>
+                Drinking water, nutritious snacks,
+                and food appropriate for your trip.
+            </p>
+        </div>
+
+        <div class="packing-card">
+            <div>🧭</div>
+            <h3>Safety Gear</h3>
+            <p>
+                Navigation tools, lighting, first aid,
+                and emergency communication equipment.
+            </p>
+        </div>
+
+    </div>
+</section>
+
+<!-- BOOKING FORM -->
+<section class="booking" id="booking">
+    <div class="section-heading">
+        <span class="eyebrow">Your next adventure starts here</span>
+        <h2>Plan Your <span style="color:#e8752b">Adventure</span> 🌄</h2>
+        <p>
+            Fill out this demo form to explore the trip-planning
+            experience.
+        </p>
+    </div>
+
+    <div class="booking-box">
+        <h3>Adventure Trip Enquiry</h3>
+
+        <p>
+            Choose a sample trip and your preferred departure date.
+        </p>
+
+        <form id="booking-form">
+            <div class="form-grid">
+
+                <div class="form-group">
+                    <label for="full-name">Your Name</label>
+                    <input
+                        type="text"
+                        id="full-name"
+                        placeholder="Enter your name"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter your email"
+                        required>
+                </div>
+
+                <div class="form-group">
+                    <label for="trip-select">Choose Your Trip</label>
+
+                    <select id="trip-select" required>
+                        <option value="">Select a trip</option>
+                        <option>Mountain Explorer</option>
+                        <option>Green Forest Trek</option>
+                        <option>Summit Challenge</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="trip-date">Preferred Date</label>
+                    <input
+                        type="date"
+                        id="trip-date"
+                        required>
+                </div>
+
+                <div class="form-group full-width">
+                    <label for="group-size">Number of Participants</label>
+
+                    <select id="group-size" required>
+                        <option value="">Select group size</option>
+                        <option>1 person</option>
+                        <option>2 people</option>
+                        <option>3–5 people</option>
+                        <option>6 or more people</option>
+                    </select>
+                </div>
+
+                <div class="full-width">
+                    <button class="submit-button" type="submit">
+                        Submit Demo Enquiry ↗
+                    </button>
+                </div>
+
+            </div>
+        </form>
+
+        <p style="font-size:12px;margin-top:15px;">
+            Demo only: this form does not send your details,
+            confirm a booking, or process payments.
+        </p>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <a href="#home" class="logo">Wander<span>Wild.</span> 🌿</a>
+
+    <p>
+        Collect moments, not things. Explore more, worry less.
+    </p>
+
+    <div class="footer-links">
+        <a href="#home">Home</a>
+        <a href="#adventures">Adventures</a>
+        <a href="#checklist">Checklist</a>
+        <a href="#safety">Safety</a>
+        <a href="#booking">Plan a Trip</a>
+    </div>
+
+    <p>
+        © 2026 WanderWild | Designed for adventure lovers 🏔️
+    </p>
+
+    <p>
+        Sample destinations, prices, ratings, and itineraries
+        are illustrative and must be verified before real travel.
+    </p>
+</footer>
+
+<script>
+// TRIP SELECTION
+function selectTrip(tripName) {
+    document.getElementById("trip-select").value = tripName;
+
+    document.getElementById("booking").scrollIntoView({
+        behavior: "smooth"
+    });
+}
+
+// CHECKLIST PROGRESS
+const checks = document.querySelectorAll(".packing-check");
+const progressCount = document.getElementById("progress-count");
+const progressBar = document.getElementById("progress-bar");
+
+function updateProgress() {
+    const completed = document.querySelectorAll(
+        ".packing-check:checked"
+    ).length;
+
+    const total = checks.length;
+    const percentage = (completed / total) * 100;
+
+    progressCount.textContent = completed + " / " + total;
+    progressBar.style.width = percentage + "%";
+}
+
+checks.forEach(function(check) {
+    check.addEventListener("change", updateProgress);
+});
+
+// DEMO BOOKING FORM
+document.getElementById("booking-form").addEventListener(
+    "submit",
+    function(event) {
+        event.preventDefault();
+
+        const name = document.getElementById("full-name").value;
+        const trip = document.getElementById("trip-select").value;
+
+        alert(
+            "Thank you, " + name + "! 🌿\n\n" +
+            "You selected: " + trip + "\n\n" +
+            "This is a demo enquiry only. " +
+            "No real booking has been created."
+        );
+
+        this.reset();
+    }
+);
+</script>
+
+</body>
+</html>
